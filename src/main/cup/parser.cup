@@ -1,0 +1,229 @@
+package generated;
+
+import java_cup.runtime.*;
+import model.*;
+import util.ErrorHandler;
+import java.util.*;
+
+parser code {:
+    private Pronostico crearPronostico(int numeroPartido,
+                                       String nombreLocal,
+                                       int golesLocal,
+                                       String nombreVisitante,
+                                       int golesVisitante,
+                                       boolean doblesPuntos) {
+        Equipo eqLocal = new Equipo(nombreLocal);
+        Equipo eqVisitante = new Equipo(nombreVisitante);
+
+        if (golesLocal < 0 || golesVisitante < 0) {
+            ErrorHandler.addError(0, 0,
+                "Los goles pronosticados no pueden ser negativos en el partido " + numeroPartido);
+        }
+
+        return new Pronostico(numeroPartido, eqLocal, golesLocal,
+                               eqVisitante, golesVisitante, doblesPuntos);
+    }
+:};
+
+terminal String CAMPEONATO, SERIE, EQUIPOS;
+terminal String PARTIDO, NRO;
+terminal String PARTICIPANTE, PRONOSTICOS, PARTIDOS;
+terminal String MARCA_X, DOS_PUNTOS, COMA, GUION;
+terminal String CORCHETE_ABR, CORCHETE_CER, SEPARADOR;
+terminal String FECHA, STRING_QUOTED, EMAIL;
+terminal String NOMBRE_EQUIPO;
+terminal Integer ENTERO;
+
+non terminal Campeonato archivo;
+non terminal Campeonato campeonato_header;
+non terminal List<Serie> fixture;
+non terminal Serie serie;
+non terminal List<Equipo> lista_equipos;
+non terminal List<Equipo> equipos;
+non terminal Partido partido;
+non terminal Participante participante;
+non terminal List<Participante> lista_participantes;
+non terminal Pronostico pronostico;
+non terminal Integer opt_marca_x;
+non terminal String nombre_participante;
+
+precedence left COMA;
+precedence left GUION;
+
+start with archivo;
+
+/* Reglas de producción */
+
+/* La esctructura principal del torneo: Campeonato → Fixture → Pronósticos */
+archivo ::= campeonato_header:c fixture:f SEPARADOR lista_participantes:p
+            {:
+                for (Serie serie : f) {
+                    c.addSerie(serie);
+                    for (Partido partido : serie.getPartidos()) {
+                        c.registrarPartido(partido);
+                    }
+                }
+
+                for (Participante part : p) {
+                    c.addParticipante(part);
+                }
+
+                RESULT = c;
+            :}
+          ;
+
+/* string del titulo del campeonato */
+campeonato_header ::= CAMPEONATO STRING_QUOTED:nombre
+                      {:
+                          RESULT = new Campeonato(nombre);
+                      :}
+                    ;
+
+/* fixture conjunto de series[] */
+fixture ::= serie:s
+                        {:
+                                List<Serie> lista = new ArrayList<>();
+                                lista.add(s);
+                                RESULT = lista;
+                        :}
+                    | fixture:lista serie:s
+                        {:
+                                lista.add(s);
+                                RESULT = lista;
+                        :}
+                    ;
+
+/* serie: nombre + equipos + partidos adem'as valida que los equipos sean 4 */
+serie ::= SERIE STRING_QUOTED:nombre lista_equipos:equipos partido:p
+          {:
+              Serie s = new Serie(nombre);
+              s.setEquipos(equipos);
+              
+              if (equipos.size() != 4) {
+                  ErrorHandler.addError(0, 0, 
+                      "La serie '" + nombre + "' debe tener exactamente 4 equipos (tiene " + equipos.size() + ")");
+              }
+              
+              s.addPartido(p);
+              RESULT = s;
+          :}
+        | serie:s partido:p
+          {:
+              s.addPartido(p);
+              RESULT = s;
+          :}
+        ;
+
+/* lista_equipos [equipo1, equipo2, equipo3, equipo4] */
+lista_equipos ::= EQUIPOS DOS_PUNTOS CORCHETE_ABR equipos:e CORCHETE_CER
+                  {:
+                      RESULT = e;
+                  :}
+                ;
+
+equipos ::= NOMBRE_EQUIPO:nombre
+            {:
+                List<Equipo> lista = new ArrayList<>();
+                lista.add(new Equipo(nombre));
+                RESULT = lista;
+            :}
+          | equipos:lista COMA NOMBRE_EQUIPO:nombre
+            {:
+                lista.add(new Equipo(nombre));
+                RESULT = lista;
+            :}
+          ;
+
+/* partido: Número, fecha, estadio, equipos y resultado tmb valida que los goles no sean negativos */
+partido ::= PARTIDO NRO DOS_PUNTOS ENTERO:num
+            FECHA:fecha GUION STRING_QUOTED:estadio
+            NOMBRE_EQUIPO:local ENTERO:golesLocal GUION NOMBRE_EQUIPO:visitante ENTERO:golesVisitante
+            {:
+                Equipo eqLocal = new Equipo(local);
+                Equipo eqVisitante = new Equipo(visitante);
+                
+                if (golesLocal < 0 || golesVisitante < 0) {
+                    ErrorHandler.addError(0, 0, 
+                        "Los goles no pueden ser negativos en el partido " + num);
+                }
+                
+                RESULT = new Partido(num, fecha, estadio, 
+                                   eqLocal, golesLocal, 
+                                   eqVisitante, golesVisitante);
+            :}
+          ;
+
+lista_participantes ::= participante:p
+                        {:
+                            List<Participante> lista = new ArrayList<>();
+                            lista.add(p);
+                            RESULT = lista;
+                        :}
+                      | lista_participantes:lista SEPARADOR participante:p
+                        {:
+                            lista.add(p);
+                            RESULT = lista;
+                        :}
+                      ;
+
+/* participante: nombre, email y sus pronósticos */
+participante ::= PARTICIPANTE DOS_PUNTOS nombre_participante:nombre GUION EMAIL:email
+                 PRONOSTICOS PARTIDOS DOS_PUNTOS pronostico:p
+                 {:
+                     Participante part = new Participante(nombre, email);
+                     part.addPronostico(p);
+                     
+                     if (part.contarMarcasDoblesPuntos() > 4) {
+                         ErrorHandler.addError(0, 0, 
+                             "El participante '" + nombre + "' tiene más de 4 marcas (X) de dobles puntos");
+                     }
+                     
+                     RESULT = part;
+                 :}
+               | participante:part pronostico:p
+                 {:
+                     part.addPronostico(p);
+                     
+                     if (part.contarMarcasDoblesPuntos() > 4) {
+                         ErrorHandler.addError(0, 0, 
+                             "El participante '" + part.getNombre() + "' tiene más de 4 marcas (X) de dobles puntos");
+                     }
+                     
+                     RESULT = part;
+                 :}
+               ;
+
+/* pronostico: número de partido, marca opcional (X), y resultado pronosticado */
+pronostico ::= ENTERO:num DOS_PUNTOS opt_marca_x:marca
+               NOMBRE_EQUIPO:local ENTERO:golesLocal GUION NOMBRE_EQUIPO:visitante ENTERO:golesVisitante
+               {:
+                   boolean doblesPuntos = (marca != null && marca == 1);
+                   RESULT = crearPronostico(num, local, golesLocal, visitante, golesVisitante, doblesPuntos);
+               :}
+             | MARCA_X ENTERO:num DOS_PUNTOS
+               NOMBRE_EQUIPO:local ENTERO:golesLocal GUION NOMBRE_EQUIPO:visitante ENTERO:golesVisitante
+               {:
+                   RESULT = crearPronostico(num, local, golesLocal, visitante, golesVisitante, true);
+               :}
+             ;
+
+/* Marca opcional (X) para dobles puntos */
+opt_marca_x ::= MARCA_X
+                {:
+                    RESULT = 1;
+                :}
+              | /* vacío */
+                {:
+                    RESULT = null;
+                :}
+              ;
+
+nombre_participante ::= NOMBRE_EQUIPO:palabra
+                                                {:
+                                                        RESULT = palabra;
+                                                :}
+                                            | nombre_participante:prev NOMBRE_EQUIPO:palabra
+                                                {:
+                                                        RESULT = prev + " " + palabra;
+                                                :}
+                                            ;
