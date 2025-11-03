@@ -1,0 +1,29 @@
+Campeonato "Eurocopa 2028"
+
+SERIE "Grupo A"
+Equipos: [España, Italia, Francia, Alemania]
+
+Partido Nro: 1
+2028/06/15 - "Santiago Bernabéu"
+España 2 - Italia 1
+
+Partido Nro: 2
+2028/06/16 - "Allianz Arena"
+Francia 1 - Alemania 2
+
+Partido Nro: 3
+2028/06/17 - "San Siro"
+España 0 - Francia 0
+
+Partido Nro: 4
+2028/06/18 - "Olympiastadion"
+Italia 1 - Alemania 3
+
+---
+
+Participante: María García - maria@gmail.com
+Pronósticos Partidos:
+1:(X) España 2 - Italia 1
+2:(X) Francia 0 - Alemania 2
+3:(X) España 0 - Francia 0
+4:(X) Italia 1 - Alemania 3

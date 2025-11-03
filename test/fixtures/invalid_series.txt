@@ -1,0 +1,19 @@
+Campeonato "Copa América 2027"
+
+SERIE "Grupo A"
+Equipos: [Argentina, Uruguay, Chile]
+
+Partido Nro: 1
+2027/06/15 - "Estadio Monumental"
+Argentina 2 - Uruguay 1
+
+Partido Nro: 2
+2027/06/16 - "Estadio Nacional"
+Chile 1 - Argentina 1
+
+---
+
+Participante: Juan Perez - juan@mail.com
+Pronósticos Partidos:
+1: Argentina 2 - Uruguay 1
+2: Chile 0 - Argentina 2

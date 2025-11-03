@@ -1,0 +1,19 @@
+Campeonato "Torneo Local 2026"
+
+SERIE "Grupo A"
+Equipos: [Peñarol, Nacional, Defensor, Wanderers]
+
+Partido Nro: 1
+2026/03/15 - "Estadio Centenario"
+Peñarol 2 - Nacional 1
+
+Partido Nro: 2
+2026/03/16 - "Parque Central"
+Defensor 0 - Wanderers 1
+
+---
+
+Participante: Carlos Sánchez - carlos@test.com
+Pronósticos Partidos:
+1: Peñarol 2 - Nacional 1
+2: Defensor 1 - River 0

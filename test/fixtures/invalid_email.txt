@@ -1,0 +1,26 @@
+Campeonato "Mundial Juvenil 2026"
+
+SERIE "Grupo A"
+Equipos: [Brasil, Argentina, México, Colombia]
+
+Partido Nro: 1
+2026/05/10 - "Estadio Azteca"
+Brasil 3 - Argentina 2
+
+Partido Nro: 2
+2026/05/11 - "Estadio Jalisco"
+México 1 - Colombia 1
+
+---
+
+Participante: Pedro López - pedro.lopez.com
+Pronósticos Partidos:
+1: Brasil 2 - Argentina 1
+2: México 1 - Colombia 1
+
+---
+
+Participante: Ana Torres - ana@mail.com
+Pronósticos Partidos:
+1: Brasil 3 - Colombia 2
+2: México 0 - Colombia 2

@@ -1,0 +1,140 @@
+Campeonato "Mundial 2026"
+
+SERIE "Grupo A"
+Equipos: [Japón, Qatar, Alemania, Uruguay]
+
+Partido Nro: 1
+2026/06/15 - "Estadio Monumental"
+Japón 3 - Qatar 2
+
+Partido Nro: 2
+2026/06/16 - "Estadio Porahi"
+Alemania 3 - Uruguay 2
+
+Partido Nro: 3
+2026/06/17 - "Arena Central"
+Japón 1 - Alemania 1
+
+Partido Nro: 4
+2026/06/18 - "Estadio Nacional"
+Qatar 0 - Uruguay 2
+
+SERIE "Grupo B"
+Equipos: [México, Argentina, Portugal, Senegal]
+
+Partido Nro: 5
+2026/06/20 - "Antelcito Arena"
+México 1 - Portugal 2
+
+Partido Nro: 6
+2026/06/21 - "Azteca Stadium"
+Argentina 3 - Senegal 0
+
+Partido Nro: 7
+2026/06/22 - "Estadio Centenario"
+México 2 - Argentina 2
+
+Partido Nro: 8
+2026/06/23 - "Maracaná"
+Portugal 1 - Senegal 1
+
+SERIE "Grupo C"
+Equipos: [Brasil, Francia, Inglaterra, Italia]
+
+Partido Nro: 9
+2026/06/25 - "Camp Nou"
+Brasil 4 - Italia 1
+
+Partido Nro: 10
+2026/06/26 - "Wembley Stadium"
+Francia 2 - Inglaterra 2
+
+Partido Nro: 11
+2026/06/27 - "San Siro"
+Brasil 1 - Francia 0
+
+Partido Nro: 12
+2026/06/28 - "Allianz Arena"
+Inglaterra 3 - Italia 2
+
+SERIE "Grupo D"
+Equipos: [España, Holanda, Bélgica, Croacia]
+
+Partido Nro: 13
+2026/07/01 - "Santiago Bernabéu"
+España 2 - Croacia 1
+
+Partido Nro: 14
+2026/07/02 - "Johan Cruyff Arena"
+Holanda 3 - Bélgica 1
+
+Partido Nro: 15
+2026/07/03 - "Camp Nou"
+España 1 - Holanda 1
+
+Partido Nro: 16
+2026/07/04 - "King Baudouin Stadium"
+Bélgica 2 - Croacia 2
+
+---
+
+Participante: Pepe Repepe - pepe@mail.com
+Pronósticos Partidos:
+1: Japón 2 - Qatar 2
+2: Alemania 2 - Uruguay 1
+3: Japón 1 - Alemania 1
+4: Qatar 1 - Uruguay 2
+5: México 0 - Portugal 2
+6: Argentina 3 - Senegal 0
+7:(X) México 2 - Argentina 2
+8: Portugal 1 - Senegal 1
+9: Brasil 3 - Italia 1
+10:(X) Francia 2 - Inglaterra 2
+11: Brasil 1 - Francia 0
+12: Inglaterra 2 - Italia 1
+13: España 2 - Croacia 1
+14: Holanda 2 - Bélgica 0
+15:(X) España 1 - Holanda 1
+16: Bélgica 1 - Croacia 1
+
+---
+
+Participante: Yosepo Coinada - y.coinada@yahoo.com
+Pronósticos Partidos:
+1:(X) Japón 3 - Qatar 2
+2:(X) Alemania 3 - Uruguay 2
+3: Japón 0 - Alemania 2
+4: Qatar 0 - Uruguay 2
+5: México 1 - Portugal 2
+6:(X) Argentina 3 - Senegal 0
+7: México 1 - Argentina 3
+8: Portugal 2 - Senegal 0
+9: Brasil 4 - Italia 1
+10: Francia 3 - Inglaterra 1
+11: Brasil 2 - Francia 1
+12: Inglaterra 3 - Italia 2
+13: España 2 - Croacia 1
+14:(X) Holanda 3 - Bélgica 1
+15: España 2 - Holanda 0
+16: Bélgica 2 - Croacia 2
+
+---
+
+Participante: Juanchi Quasigol - quasi@gol.com
+Pronósticos Partidos:
+1: Japón 3 - Qatar 1
+2: Alemania 2 - Uruguay 1
+3: Japón 1 - Alemania 1
+4: Qatar 1 - Uruguay 3
+5:(X) México 1 - Portugal 2
+6: Argentina 2 - Senegal 0
+7: México 2 - Argentina 2
+8:(X) Portugal 1 - Senegal 1
+9:(X) Brasil 4 - Italia 1
+10: Francia 1 - Inglaterra 3
+11:(X) Brasil 1 - Francia 0
+12: Inglaterra 3 - Italia 2
+13: España 3 - Croacia 0
+14: Holanda 3 - Bélgica 1
+15: España 0 - Holanda 2
+16: Bélgica 3 - Croacia 1
