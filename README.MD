@@ -1,55 +1,115 @@
-# CUP y JFLEX - Guía de Instalación y Uso
+# Football Tournament Forecasting System
 
-## Descargas
+Analizador de pronósticos de campeonatos de fútbol usando **JFlex** (análisis léxico) y **CUP** (análisis sintáctico).
 
-- **JFLEX**: https://www.jflex.de/download.html
-- **CUP**: http://www2.cs.tum.edu/projects/cup/
+## Quick Start (Maven - Recommended)
 
-## Instalación
+### Prerequisites
 
-### Windows
+- Java JDK 8+
+- Maven 3.6+
 
-1. Descargar JFlex y extraer en una carpeta (ej: `C:\jflex-1.9.1`)
-2. Modificar `bin/jflex.bat` y configurar `JFLEX_HOME`:
-    ```batch
-    set JFLEX_HOME=C:\jflex-1.9.1
-    ```
-3. Agregar al PATH: `C:\jflex-1.9.1\bin`
-4. Descargar `java-cup-11b.jar` y colocarlo en la carpeta del proyecto
+### Build and Run
 
-### macOS/Linux
-
-1. Descargar JFlex y extraer en una carpeta (ej: `~/jflex-1.9.1`)
-2. Editar `~/.bash_profile` o `~/.zshrc` y agregar:
-    ```bash
-    export JFLEX_HOME=~/jflex-1.9.1
-    export PATH=$PATH:$JFLEX_HOME/bin
-    ```
-3. Ejecutar: `source ~/.bash_profile` (o `~/.zshrc`)
-4. Descargar `java-cup-11b.jar` y colocarlo en la carpeta del proyecto
-
-## Uso - Comandos
-
-### Generar el scanner (analizador léxico)
 ```bash
-jflex scanner.jflex
+mvn clean generate-sources
+mvn compile
+mvn exec:java -Dexec.args="test/fixtures/valid_tournament.txt"
 ```
 
-### Generar el parser (analizador sintáctico)
+### Or package as JAR
+
 ```bash
-java -jar java-cup-11b.jar parser.cup
+mvn package
+java -jar target/sintax-tournament-1.0.0.jar test/fixtures/valid_tournament.txt
 ```
 
-### Compilar el proyecto
+## Features
+
+- Lexical analysis with JFlex
+- Syntactic analysis with CUP
+- Complete validation (4/8/12 series, 4 teams per series, max 4 (X) marks)
+- Automatic ranking calculation
+- Scoring system: 2pts result + 1pt per goal + 2pts exact bonus (×2 with X mark)
+- Cumulative error reporting
+- Console output
+
+## Maven Commands
+
 ```bash
-javac -cp java-cup-11b-runtime.jar *.java
+mvn clean                    # Clean generated files
+mvn generate-sources         # Generate Scanner.java and parser.java
+mvn compile                  # Compile all classes
+mvn exec:java                # Run application
+mvn package                  # Create JAR file
 ```
 
-### Ejecutar (ejemplo)
-```bash
-java -cp .:java-cup-11b-runtime.jar Main
+## Input File Format
+
 ```
-**Nota en Windows**: usar `;` en lugar de `:` en el classpath
+Campeonato "Tournament Name"
+
+SERIE "Group Name"
+Equipos: [Team1, Team2, Team3, Team4]
+
+Partido Nro: 1
+YYYY/MM/DD - "Stadium"
+TeamLocal Goals - TeamVisitor Goals
+
+---
+
+Participante: Full Name - email@example.com
+Pronósticos Partidos:
+1: Team1 2 - Team2 1
+(X) 2: Team3 0 - Team4 0
+
+---
+```
+
+## Validations
+
+- **Lexical**: Date format (YYYY/MM/DD), valid email, non-negative integers
+- **Syntactic**: Correct file structure and section ordering
+- **Semantic**: 4/8/12 series, exactly 4 teams per series, max 4 (X) marks, team existence, match consistency
+
+## Scoring System
+
+| Achievement            | Base Points | With (X) |
+| ---------------------- | ----------- | -------- |
+| Result (win/draw/loss) | 2           | 4        |
+| Local team goals       | 1           | 2        |
+| Visitor team goals     | 1           | 2        |
+| Exact score bonus      | +2          | +4       |
+| **Max per match**      | 6           | 12       |
+
+## Test Files
+
 ```bash
-java -cp .;java-cup-11b-runtime.jar Main
+mvn exec:java -Dexec.args="test/fixtures/valid_tournament.txt"      # Valid
+mvn exec:java -Dexec.args="test/fixtures/invalid_series.txt"        # Invalid series count
+mvn exec:java -Dexec.args="test/fixtures/invalid_marks.txt"         # Too many (X)
+mvn exec:java -Dexec.args="test/fixtures/invalid_email.txt"         # Bad email
+mvn exec:java -Dexec.args="test/fixtures/invalid_team.txt"          # Team not in fixture
+```
+
+## Troubleshooting
+
+### "mvn command not found"
+
+Install Maven:
+
+```bash
+# Ubuntu/Debian
+sudo apt install maven
+
+# macOS
+brew install maven
+```
+
+### Build fails
+
+```bash
+mvn clean
+mvn generate-sources
+mvn compile
 ```
