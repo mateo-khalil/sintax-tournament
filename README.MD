@@ -1,6 +1,6 @@
 # Football Tournament Forecasting System
-
-Analizador de pronósticos de campeonatos de fútbol usando **JFlex** (análisis léxico) y **CUP** (análisis sintáctico).
+College project part of the subject: Theory of Computation
+Football championship prediction analyzer using **JFlex** (lexical analysis) and **CUP** (syntactic analysis).
 
 ## Quick Start (Maven - Recommended)
 
@@ -113,3 +113,4 @@ mvn clean
 mvn generate-sources
 mvn compile
 ```
+
