@@ -1,5 +1,6 @@
 # Football Tournament Forecasting System
-College project part of the subject: Theory of Computation
+College project part of the subject: Theory of Computation. 
+
 Football championship prediction analyzer using **JFlex** (lexical analysis) and **CUP** (syntactic analysis).
 
 ## Quick Start (Maven - Recommended)
@@ -113,4 +114,5 @@ mvn clean
 mvn generate-sources
 mvn compile
 ```
+
 
